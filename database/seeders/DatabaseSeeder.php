@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        products::truncate();
-        Category::truncate();
+        //products::truncate();
+       // Category::truncate();
         \App\Models\User::factory(10)->create();
        $category =  \App\Models\Category::create([
                 'category_name' => 'Mobile',

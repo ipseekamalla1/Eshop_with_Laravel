@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class CreateProductsTable extends Migration
 {
@@ -18,11 +19,12 @@ class CreateProductsTable extends Migration
             $table->string('product_name');
             $table->string('product_desc');
             $table->string('price');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('old_price')->nullable();
             $table->timestamps();
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreignId('category_id')->constrained('categories','id');
+            //$table->unsignedBigInteger('category_id');
+            //$table->foreign('category_id')->references('id')->on('categories');
         });
     }
  
