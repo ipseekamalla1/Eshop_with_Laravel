@@ -19,10 +19,12 @@ class DatabaseSeeder extends Seeder
        // Category::truncate();
         \App\Models\User::factory(10)->create();
        $category =  \App\Models\Category::create([
-                'category_name' => 'Mobile',
-                'category_desc' => 'This category contains mobile'
+                'category_name' => 'Accessories',
+                'category_desc' => 'This category contains accessories'
         ]);
 
-        products::factory(5)->create();
+        products::factory(5)->create([
+            'category_id' => 3
+        ]);
     }
 }

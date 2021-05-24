@@ -44,7 +44,8 @@ Route::get('/product/{prod}', function (products $prod) {
 
 Route::get('/home',function(){
     
-    $products = products::all();
+    $products = products::latest()->with('category')->get();
+    //select = from product order by created_at DESC
     return view('home', ['products' => $products]);
 });
 
