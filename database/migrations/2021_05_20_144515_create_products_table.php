@@ -20,9 +20,9 @@ class CreateProductsTable extends Migration
             $table->string('price');
             $table->string('image');
             $table->string('old_price')->nullable();
-            $table->integer('category_id')->unsigned();
             $table->timestamps();
-            $table->foreignId('category_id')->constrained();
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
  
