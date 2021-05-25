@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Test;
 use App\Models\products;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,8 +45,15 @@ Route::get('/product/{prod}', function (products $prod) {
 
 Route::get('/home',function(){
     
-    $products = products::latest()->with('category')->get();
+    $products = products::latest()->get();
     //select = from product order by created_at DESC
     return view('home', ['products' => $products]);
+});
+
+Route::get('/categories/{category}',function(Category $category){
+    
+    //$products = products::whereCategoryId($category->id)->get();
+    $products = $category->products;
+    return view('category', ['products' => $products, 'category'  => $category]);
 });
 

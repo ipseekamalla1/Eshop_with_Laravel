@@ -18,6 +18,8 @@ class products extends Model
         'image' => ' ',
     ];
 
+    protected $with = ['category'];
+
     public function category(){
         //hasOne,hasMany,belongsTo,belongsToMany
         return $this->belongsTo(Category::class);

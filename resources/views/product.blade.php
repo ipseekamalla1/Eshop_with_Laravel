@@ -1,5 +1,7 @@
 @extends('product-layout')
-
+@section('includes/homemenu')
+    
+@endsection
 @section('content')
 <section class="hero-slider">
     <!-- Single Slider -->

@@ -1,5 +1,9 @@
 @extends('product-layout')
 
+@section('menu')
+    @include('includes/homemenu')
+@endsection
+
 @section('content')
     
 
@@ -130,7 +134,7 @@
                                                     <h3><a href="product-details.html">{{ $product->product_name }}</a></h3>
                                                     <div class="product-price">
                                                         <span>Rs. {{ $product->price}}</span><br>
-                                                        <span>{{ $product->category->category_name}}</span>
+                                                        <span><a href="/categories/{{ $product->category->id}}">{{ $product->category->category_name}}</a></span>
                                                     </div>
                                                 </div>
                                             </div>
