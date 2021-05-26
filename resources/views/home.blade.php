@@ -1,10 +1,8 @@
-@extends('product-layout')
+<x-layout>
 
-@section('menu')
-    @include('includes/homemenu')
-@endsection
 
-@section('content')
+
+
     
 
 <section class="hero-slider">
@@ -1872,4 +1870,5 @@
 </div>
 <!-- Modal end -->
 
-@endsection
+
+</x-layout>

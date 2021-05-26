@@ -1,6 +1,4 @@
-@extends('layout')
-
-@section('content')
+<x-layout>
   <h1>
      Products
     </h1>
@@ -15,6 +13,5 @@
     </article>
     @endforeach
 @endsection
-
-
+</x-layout>
     
