@@ -56,4 +56,8 @@ Route::get('/categories/{category}',function(Category $category){
 
 //admin routing
 
-Route::get('/admin/products', [App\Http\Controllers\Admin\ProductsController::class, 'index']);
+Route::get('/admin/products', [App\Http\Controllers\Admin\ProductsController::class, 'index'])->name('product_list');
+
+Route::get('/admin/products/create', [App\Http\Controllers\Admin\ProductsController::class, 'create']);
+
+Route::post('/admin/products/store', [App\Http\Controllers\Admin\ProductsController::class, 'store']);

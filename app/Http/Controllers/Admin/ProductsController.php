@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\products;
+use App\Models\Category;
 
 class ProductsController extends Controller
 {
@@ -16,7 +17,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products= products::latest()->get();
-        return view('admin.products.index', ['products' => $products]);
+        return view('admin/products/index', ['products' => $products]);
     }
 
     /**
@@ -26,7 +27,8 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin/products/create',  compact('categories'));
     }
 
     /**
@@ -37,7 +39,18 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product=new products;
+        $product->product_name = $request->input('product_name');
+        $product->product_desc = $request->input('product_desc');
+        $product->price = $request->input('price');
+        $product->category_id = $request->input('category_id');
+        if($product->save()){
+            return redirect()->route('product_list');
+        }
+        else{
+            return redirect()->back();
+        }
+        
     }
 
     /**
