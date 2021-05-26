@@ -1,5 +1,5 @@
 <a href="/admin/products/create">Create Product</a>
-
+<x-admin.layout>
 
 <table width="900" align="center">
     <tr>
@@ -22,5 +22,6 @@
     </tr>
     @endforeach
 </table>
+</x-admin.layout>
     
 

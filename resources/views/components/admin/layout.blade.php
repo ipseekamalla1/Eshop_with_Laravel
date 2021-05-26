@@ -68,10 +68,10 @@
               <a href="index.html" class="nav-link"><i class="typcn typcn-chart-area-outline"></i> Dashboard</a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link with-sub"><i class="typcn typcn-document"></i> Pages</a>
+              <a href="" class="nav-link with-sub"><i class="typcn typcn-document"></i> Products</a>
               <nav class="az-menu-sub">
-                <a href="page-signin.html" class="nav-link">Sign In</a>
-                <a href="page-signup.html" class="nav-link">Sign Up</a>
+                <a href="{{ route('product_list') }}" class="nav-link">List</a>
+                <a href="{{ route('create_product') }}" class="nav-link">Create</a>
               </nav>
             </li>
             <li class="nav-item">
