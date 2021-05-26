@@ -69,10 +69,11 @@
 							<div class="col-lg-4 col-md-6 col-12">
 								<div class="single-product">
 									<div class="product-img">
-										<a href="product-details.html">
+                                        <a href="/product/ {{ $product->id}}">
+				
 											<img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
 											<img class="hover-img" src="https://via.placeholder.com/550x750" alt="#">
-										</a>
+                                        </a>
 										<div class="button-head">
 											<div class="product-action">
 												<a data-toggle="modal" data-target="#exampleModal" title="Quick View" href="#"><i class=" ti-eye"></i><span>Quick Shop</span></a>
@@ -85,7 +86,7 @@
 										</div>
 									</div>
 									<div class="product-content">
-										<h3><a href="product-details.html">{{ $product->product_name}}</a></h3>
+										<h3><a href="/product/ {{ $product->id}}">{{ $product->product_name}}</a></h3>
 										<div class="product-price">
 											<span>Rs. {{ $product->price}}</span>
 										</div>

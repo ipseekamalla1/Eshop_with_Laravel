@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Test;
 use App\Models\products;
 use App\Models\Category;
-
+use App\Http\Controllers\ProductsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,17 +43,17 @@ Route::get('/product/{prod}', function (products $prod) {
 // //         return $products;
 // // });
 
-Route::get('/home',function(){
-    
-    $products = products::latest()->get();
-    //select = from product order by created_at DESC
-    return view('home', ['products' => $products]);
-});
+Route::get('/home',[ProductsController::class,'index']);
+
 
 Route::get('/categories/{category}',function(Category $category){
     
     //$products = products::whereCategoryId($category->id)->get();
     $products = $category->products;
+
     return view('category', ['products' => $products, 'category'  => $category]);
 });
 
+//admin routing
+
+Route::get('/admin/products', [App\Http\Controllers\Admin\ProductsController::class, 'index']);
