@@ -64,3 +64,5 @@ Route::post('/admin/products/store', [App\Http\Controllers\Admin\ProductsControl
 
 
 Route::get('/admin/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('/admin/products/edit/{product}', [App\Http\Controllers\Admin\ProductsController::class, 'edit']);
