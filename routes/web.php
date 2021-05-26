@@ -61,3 +61,6 @@ Route::get('/admin/products', [App\Http\Controllers\Admin\ProductsController::cl
 Route::get('/admin/products/create', [App\Http\Controllers\Admin\ProductsController::class, 'create']);
 
 Route::post('/admin/products/store', [App\Http\Controllers\Admin\ProductsController::class, 'store']);
+
+
+Route::get('/admin/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
