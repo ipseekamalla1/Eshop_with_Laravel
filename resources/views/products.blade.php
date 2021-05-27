@@ -12,6 +12,6 @@
             <p>{{ $product['product_desc'] }}</p>
     </article>
     @endforeach
-@endsection
+
 </x-layout>
     
