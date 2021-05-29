@@ -3,31 +3,34 @@
         <div class="container">
             <div class="az-content-body">
                 @if ($errors->any())
-            
                     <div class="alert alert-danger">
                         <p><strong>Opps Something went wrong</strong></p>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
                     </div>
                 @endif
                 <h2>Create Product</h2>
                 <form action="/admin/products/store" method="POST">
                     @csrf
-                    Product Name: <input class="form-control" type="text" name="product_name" value="{{ old('product_name')}}"><br><br>
+                    Product Name: <input class="form-control" type="text" name="product_name"
+                        value="{{ old('product_name') }}"><br><br>
                     @error('product_name')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     Product Desc: <textarea class="form-control" name="product_desc" id="" cols=30
-                        rows=10>{{ old('product_desc')}}</textarea><br>
-                    Price: <input class="form-control" type="text" name="price" value="{{ old('price')}}"><br><br>
+                        rows=10>{{ old('product_desc') }}</textarea>
+                    @error('product_name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror<br>
+                    Price: <input class="form-control" type="text" name="price" value="{{ old('price') }}">
+                    @error('product_name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror<br><br>
                     Category:
                     <x-forms.select name="category_id">
                         <option value="0"> Select a category</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" {{ $category->id == old('category_id') ? "selected" : ' '}}>{{ $category->category_name }}</option>
+                            <option value="{{ $category->id }}"
+                                {{ $category->id == old('category_id') ? 'selected' : ' ' }}>
+                                {{ $category->category_name }}</option>
                         @endforeach
                     </x-forms.select>
 

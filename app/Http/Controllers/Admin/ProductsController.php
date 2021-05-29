@@ -89,9 +89,24 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, products $product)
     {
-        //
+        $validated = $request->validate([
+            'product_name' =>"required|max:255",
+            'product_desc' => 'required',
+            'price' => 'required',
+            'category_id' => 'required|integer',
+        ]);
+        $product->product_name = $request->input('product_name');
+        $product->product_desc = $request->input('product_desc');
+        $product->price = $request->input('price');
+        $product->category_id = $request->input('category_id');
+        if($product->save()){
+            return redirect()->route('product_list');
+        }
+        else{
+            return redirect()->back();
+        }
     }
 
     /**
