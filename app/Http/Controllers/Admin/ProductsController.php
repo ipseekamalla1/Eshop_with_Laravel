@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\products;
 use App\Models\Category;
-
+use Intervention\Image\Facades\Image;
 class ProductsController extends Controller
 {
     /**
@@ -59,9 +59,12 @@ class ProductsController extends Controller
         $product->category_id = $request->input('category_id');
         if ($request->hasFile('upload_image')){
             $name=$request->file('upload_image')->getClientOriginalName();
-            //return $name;
-           $request->file('upload_image')->storeAs('public/images',$name);
-           $product->image=$name;
+    
+            $request->file('upload_image')->storeAs('public/images',$name);
+            $image_resize = Image::make(storage_path('app/public/images/'.$name));
+            $image_resize->resize(550,750);
+            $image_resize->save(storage_path('app/public/images/thumbnail'.$name));
+            $product->image=$name;
 
         }
         //return $product;
