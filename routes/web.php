@@ -18,7 +18,7 @@ use App\Http\Controllers\ProductsController;
 Route::get('/', function () {
     $products=products::all();
 
-    return view('products',['products' =>$products]);
+    return view('home',['products' =>$products]);
 });
 
 Route::get('/product/{prod}', function (products $prod) {
@@ -55,7 +55,7 @@ Route::get('/categories/{category}',function(Category $category){
 });
 
 //admin routing
-
+Route::middleware(['auth'])->group(function(){
 Route::get('/admin/products', [App\Http\Controllers\Admin\ProductsController::class, 'index'])->name('product_list');
 
 Route::get('/admin/products/create', [App\Http\Controllers\Admin\ProductsController::class, 'create'])->name('create_product');
@@ -63,8 +63,19 @@ Route::get('/admin/products/create', [App\Http\Controllers\Admin\ProductsControl
 Route::post('/admin/products/store', [App\Http\Controllers\Admin\ProductsController::class, 'store']);
 
 
-Route::get('/admin/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+Route::get('/admin/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
+        
 
 Route::get('/admin/products/edit/{product}', [App\Http\Controllers\Admin\ProductsController::class, 'edit']);
 
 Route::post('/admin/products/update/{product}',[App\Http\Controllers\Admin\ProductsController::class,'update']);
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
