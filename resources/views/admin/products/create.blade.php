@@ -8,7 +8,7 @@
                     </div>
                 @endif
                 <h2>Create Product</h2>
-                <form action="/admin/products/store" method="POST">
+                <form action="/admin/products/store" method="POST" enctype="multipart/form-data">
                     @csrf
                     Product Name: <input class="form-control" type="text" name="product_name"
                         value="{{ old('product_name') }}"><br><br>
@@ -33,7 +33,8 @@
                                 {{ $category->category_name }}</option>
                         @endforeach
                     </x-forms.select>
-
+                    <br><br>
+                    <input type="file" src="" name="upload_image" id="">
 
                     {{-- <select name="category_id" id="">
         <option value="0"> Select a category</option>

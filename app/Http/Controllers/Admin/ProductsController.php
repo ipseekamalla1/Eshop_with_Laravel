@@ -39,17 +39,33 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
+       // return $request;
         $validated = $request->validate([
             'product_name' =>"required|max:255|unique:products",
             'product_desc' => 'required',
             'price' => 'required',
             'category_id' => 'required|integer',
-        ]);
+        ],
+        [
+            'required'=>'attribute is required',
+            'product_name.required' => 'Product Name is required.Please input it.'
+        ]
+    );
+       
         $product=new products;
         $product->product_name = $request->input('product_name');
         $product->product_desc = $request->input('product_desc');
         $product->price = $request->input('price');
         $product->category_id = $request->input('category_id');
+        if ($request->hasFile('upload_image')){
+            $name=$request->file('upload_image')->getClientOriginalName();
+            //return $name;
+           $request->file('upload_image')->storeAs('public/images',$name);
+           $product->image=$name;
+
+        }
+        //return $product;
+
         if($product->save()){
             return redirect()->route('product_list');
         }
