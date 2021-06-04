@@ -5,6 +5,7 @@ use PHPUnit\Framework\Test;
 use App\Models\products;
 use App\Models\Category;
 use App\Http\Controllers\ProductsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,6 +46,9 @@ Route::get('/product/{prod}', function (products $prod) {
 
 Route::get('/home',[ProductsController::class,'index']);
 
+Route::resource('products', ProductsController::class)->only(['index', 'show']);
+
+Route::get('search', [App\Http\Controllers\SearchController::class, 'search'])->name('search');
 
 Route::get('/categories/{category}',function(Category $category){
     

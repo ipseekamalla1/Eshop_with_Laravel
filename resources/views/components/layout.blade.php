@@ -121,7 +121,7 @@
                             <div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
                             <!-- Search Form -->
                             <div class="search-top">
-                                <form class="search-form">
+                                <form class="search-form" method="GET" action="{{ route('search')}}">
                                     <input type="text" placeholder="Search here..." name="search">
                                     <button value="search" type="submit"><i class="ti-search"></i></button>
                                 </form>
@@ -140,7 +140,7 @@
                                     <option>mobile</option>
                                     <option>kid’s item</option>
                                 </select>
-                                <form>
+                                <form method="GET" action="{{ route('search') }}">
                                     <input name="search" placeholder="Search Products Here....." type="search">
                                     <button class="btnn"><i class="ti-search"></i></button>
                                 </form>
