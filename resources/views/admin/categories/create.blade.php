@@ -7,36 +7,33 @@
                         <p><strong>Opps Something went wrong</strong></p>
                     </div>
                 @endif
-                <h2>Create Product</h2>
-                <form action="{{ route('admin.products.store')}}" method="POST" enctype="multipart/form-data">
+                <h2>Create Category</h2>
+                <form action="{{ route('admin.categories.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    Product Name: <input class="form-control" type="text" name="product_name"
-                        value="{{ old('product_name') }}"><br><br>
-                    @error('product_name')
+                    Category Name: <input class="form-control" type="text" name="category_name"
+                        value="{{ old('category_name') }}"><br><br>
+                    @error('category_name')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                    Product Desc: <textarea class="form-control" name="product_desc" id="" cols=30
-                        rows=10>{{ old('product_desc') }}</textarea>
-                    @error('product_name')
+                    Category Desc: <textarea class="form-control" name="category_desc" id="" cols=30
+                        rows=10>{{ old('category_desc') }}</textarea>
+                    @error('category_desc')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror<br>
-                    Price: <input class="form-control" type="text" name="price" value="{{ old('price') }}">
-                    @error('product_name')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror<br><br>
-                    Category:
-                    <x-forms.select name="category_id">
+    
+                    Parent Category:
+                    <x-forms.select name="parent_id" class="form-control">
                         <option value="0"> Select a category</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}"
-                                {{ $category->id == old('category_id') ? 'selected' : ' ' }}>
+                                {{ $category->id == old('parent_id') ? 'selected' : ' ' }}>
                                 {{ $category->category_name }}</option>
                         @endforeach
                     </x-forms.select>
                     <br><br>
-                    <input type="file" src="" name="upload_image" id="">
+                    {{--<input type="file" src="" name="upload_image" id="">
 
-                    {{-- <select name="category_id" id="">
+                     <select name="category_id" id="">
         <option value="0"> Select a category</option>
         @foreach ($categories as $category)
             <option value="{{ $category->id }}">{{ $category->category_name }}</option>

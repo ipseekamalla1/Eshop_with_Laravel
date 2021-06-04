@@ -55,21 +55,25 @@ Route::get('/categories/{category}',function(Category $category){
 });
 
 //admin routing
-Route::middleware(['auth'])->group(function(){
-Route::get('/admin/products', [App\Http\Controllers\Admin\ProductsController::class, 'index'])->name('product_list');
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function(){
 
-Route::get('/admin/products/create', [App\Http\Controllers\Admin\ProductsController::class, 'create'])->name('create_product');
+Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+// Route::get('/admin/products', [App\Http\Controllers\Admin\ProductsController::class, 'index'])->name('product_list');
 
-Route::post('/admin/products/store', [App\Http\Controllers\Admin\ProductsController::class, 'store']);
+// Route::get('products/create', [App\Http\Controllers\Admin\ProductsController::class, 'create'])->name('create_product');
+
+// Route::post('products/store', [App\Http\Controllers\Admin\ProductsController::class, 'store']);
 
 
-Route::get('/admin/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
+
         
 
-Route::get('/admin/products/edit/{product}', [App\Http\Controllers\Admin\ProductsController::class, 'edit']);
+// Route::get('products/edit/{product}', [App\Http\Controllers\Admin\ProductsController::class, 'edit']);
 
-Route::post('/admin/products/update/{product}',[App\Http\Controllers\Admin\ProductsController::class,'update']);
+// Route::post('products/update/{product}',[App\Http\Controllers\Admin\ProductsController::class,'update']);
 
+Route::resource('categories',App\Http\Controllers\Admin\CategoriesController::class);
+Route::resource('products',App\Http\Controllers\Admin\ProductsController::class);
 // Route::get('/', function () {
 //     return view('welcome');
 // });
