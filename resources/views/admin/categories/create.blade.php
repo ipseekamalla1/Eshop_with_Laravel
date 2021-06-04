@@ -15,6 +15,9 @@
                     @error('category_name')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+                    Category Slug: <input class="form-control" type="text" name="slug"
+                    value="{{ old('slug') }}"><br><br>
+                    
                     Category Desc: <textarea class="form-control" name="category_desc" id="" cols=30
                         rows=10>{{ old('category_desc') }}</textarea>
                     @error('category_desc')
@@ -31,6 +34,11 @@
                         @endforeach
                     </x-forms.select>
                     <br><br>
+                    <select name="" id="">
+                        <option value="">Mobile</option>
+                        <option value="">Accesories</option>
+                        <option value="">Smsumg Product</option>
+                    </select>
                     {{--<input type="file" src="" name="upload_image" id="">
 
                      <select name="category_id" id="">
@@ -46,3 +54,12 @@
         </div>
     </div>
 </x-admin.layout>
+<script>
+    jQuery(document).ready(function($){
+        $('#category_name').on('change', function(){
+            var name = $('#category_name').val();
+            var slug = name.replace(/\s+/g, '-').toLowerCase();
+            $('#slug').val(slug);
+        })
+    })
+</script>

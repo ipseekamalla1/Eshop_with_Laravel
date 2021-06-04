@@ -58,6 +58,7 @@ Route::get('/categories/{category}',function(Category $category){
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function(){
 
 Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+
 // Route::get('/admin/products', [App\Http\Controllers\Admin\ProductsController::class, 'index'])->name('product_list');
 
 // Route::get('products/create', [App\Http\Controllers\Admin\ProductsController::class, 'create'])->name('create_product');
