@@ -81,25 +81,34 @@
 												<a title="Compare" href="#"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
 											</div>
 											<div class="product-action-2">
-												<a title="Add to cart" href="#">Add to cart</a>
-											</div>
-										</div>
-									</div>
-									<div class="product-content">
-										<h3><a href="/product/ {{ $product->id}}">{{ $product->product_name}}</a></h3>
-										<div class="product-price">
-											<span>Rs. {{ $product->price}}</span>
-										</div>
-									</div>
-								</div>
-							</div>
-                            @endforeach
-							
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!--/ End Product Style 1  -->	
-    
+												
+								
+                                                <form action="{{ route('add_to_cart') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                    <input type="hidden" name="quantity" value="1">
+                                                    <input type="submit" value="Add to Cart">
+                                                    {{-- <a title="Add to cart" href="#" onclick="event.preventDefault(); this.closest('form').submit();">Add to cart</a> --}}
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <h3><a href="/products/{{ $product->id }}">{{ $product->product_name }}</a></h3>
+                                        <div class="product-price">
+                                            <span>Rs. {{ $product->price }}</span><br>
+                                            <span><a href="/categories/{{ $product->category->id }}">{{ $product->category->name }}</a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ End Product Style 1  -->
 @endsection
+
+									

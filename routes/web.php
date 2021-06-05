@@ -22,27 +22,7 @@ Route::get('/', function () {
     return view('home',['products' =>$products]);
 });
 
-Route::get('/product/{prod}', function (products $prod) {
-    //$product = products::find($id);
-    return view('product',['product'=> $prod] );
-});
 
-
-// //Inserting items in Products table
-//  Route::get('/create_product',function(){
-//      products::create([
-//         'product_name'=> 'Smart TV',
-//         'product_desc'=> 'This is very nice Tv',
-//         'price'=>'100000',
-//         'image'=>''
-//      ]);
-//  });
-
-// // //Getting items from product table
-// // Route::get('/get_product',function(){
-// //         $products = products::get();
-// //         return $products;
-// // });
 
 Route::get('/home',[ProductsController::class,'index']);
 
@@ -57,6 +37,11 @@ Route::get('/categories/{category}',function(Category $category){
 
     return view('category', ['products' => $products, 'category'  => $category]);
 });
+
+Route::resource('order', App\Http\Controllers\OrderController::class);
+Route::post('cart', [App\Http\Controllers\OrderItemController::class, 'store'])
+                            ->name('add_to_cart')
+                            ->middleware('auth');
 
 //admin routing
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function(){
